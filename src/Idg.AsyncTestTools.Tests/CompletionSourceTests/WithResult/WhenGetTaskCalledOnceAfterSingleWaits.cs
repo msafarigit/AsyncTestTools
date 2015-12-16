@@ -1,0 +1,35 @@
+﻿using System;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace Idg.AsyncTest.Tests.CompletionSourceTests.WithResult
+{
+    public class WhenGetTaskCalledOnceAfterSingleWaits : CompletionSourceWithResultTestBase
+    {
+        private Task[] _waits;
+
+        public WhenGetTaskCalledOnceAfterSingleWaits()
+        {
+            _waits = new[]
+            {
+                Source.WaitAsync(),
+                Source.WaitAsync(),
+                Source.WaitAsync()
+            };
+            Source.GetTask();
+        }
+
+        [Fact]
+        public void FirstWaitCompletes()
+        {
+            Assert.True(_waits[0].Wait(TimeSpan.FromSeconds(2)));
+        }
+
+        [Fact]
+        public void FurtherWaitsAreNotComplete()
+        {
+            Assert.False(_waits[1].IsCompleted);
+            Assert.False(_waits[2].IsCompleted);
+        }
+    }
+}

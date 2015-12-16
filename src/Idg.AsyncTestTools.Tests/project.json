@@ -1,0 +1,26 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "Idg.AsyncTestTools.Tests Class Library",
+  "authors": [ "Ian Griffiths" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "dependencies": {
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+
+    "Idg.AsyncTestTools": ""
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "dependencies": {
+        "xunit.runner.visualstudio": "2.1.0"
+      }
+    },
+    "dnxcore50": { }
+  }
+}
