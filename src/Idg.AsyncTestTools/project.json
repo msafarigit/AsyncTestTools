@@ -3,6 +3,7 @@
   "title": "Asynchronous Test Tools",
   "description": "Utilities to simplify automated tests that involve asynchronous operations",
   "authors": [ "Ian Griffiths" ],
+  "copyright": "Copyright © 2015 Ian Griffiths",
   "tags": [ "Testing", "Async" ],
   "projectUrl": "https://github.com/idg10/AsyncTestTools",
   "licenseUrl": "https://github.com/idg10/AsyncTestTools/blob/master/LICENSE",
