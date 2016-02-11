@@ -31,5 +31,11 @@ namespace Idg.AsyncTest.Tests.CompletionSourceTests.WithResult
             Assert.False(_waits[1].IsCompleted);
             Assert.False(_waits[2].IsCompleted);
         }
+
+        [Fact]
+        public void CallCountIsOne()
+        {
+            Assert.Equal(1, Source.CallCount);
+        }
     }
 }

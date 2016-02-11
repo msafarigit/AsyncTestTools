@@ -55,5 +55,11 @@ namespace Idg.AsyncTest.Tests.CompletionSourceWithArgsTests.WithResult
         {
             Assert.Same(ArgTwo, Source.Arguments[1]);
         }
+
+        [Fact]
+        public void CallCountIsTwo()
+        {
+            Assert.Equal(2, Source.CallCount);
+        }
     }
 }

@@ -22,5 +22,11 @@ namespace Idg.AsyncTest.Tests.CompletionSourceWithArgsTests.NoResult
             Assert.False(Source.WaitAsync().IsCompleted);
             Assert.False(Source.WaitAsync().IsCompleted);
         }
+
+        [Fact]
+        public void CallCountIsZero()
+        {
+            Assert.Equal(0, Source.CallCount);
+        }
     }
 }

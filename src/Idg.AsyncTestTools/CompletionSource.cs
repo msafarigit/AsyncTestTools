@@ -18,6 +18,12 @@ namespace Idg.AsyncTest
             new CompletionSourceWithArgs<object, object>();
 
         /// <summary>
+        /// Returns the number of calls that have been made (as represented by calls to
+        /// <see cref="GetTask"/>.
+        /// </summary>
+        public int CallCount => _source.CallCount;
+
+        /// <summary>
         /// Returns a task that produces a result from a matching call to <see cref="Complete"/>,
         /// or an exception from a matching call to <see cref="SupplyException(Exception)"/>.
         /// </summary>
@@ -117,6 +123,12 @@ namespace Idg.AsyncTest
     {
         private readonly CompletionSourceWithArgs<object, TResult> _source =
             new CompletionSourceWithArgs<object, TResult>();
+
+        /// <summary>
+        /// Returns the number of calls that have been made (as represented by calls to
+        /// <see cref="GetTask"/>.
+        /// </summary>
+        public int CallCount => _source.CallCount;
 
         /// <summary>
         /// Returns a task that produces a result from a matching call to

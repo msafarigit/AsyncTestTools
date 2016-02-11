@@ -17,6 +17,12 @@ namespace Idg.AsyncTest
         public IReadOnlyList<TArg> Arguments => _source.Arguments;
 
         /// <summary>
+        /// Returns the number of calls that have been made (as represented by calls to
+        /// <see cref="GetTask"/>.
+        /// </summary>
+        public int CallCount => _source.Arguments.Count;
+
+        /// <summary>
         /// Returns a task that produces a result from a matching call to
         /// <see cref="SupplyResult(TResult)"/>or an exception from a matching call to
         /// <see cref="SupplyException(Exception)"/>.
@@ -142,6 +148,12 @@ namespace Idg.AsyncTest
                 }
             }
         }
+
+        /// <summary>
+        /// Returns the number of calls that have been made (as represented by calls to
+        /// <see cref="GetTask"/>.
+        /// </summary>
+        public int CallCount => Arguments.Count;
 
         /// <summary>
         /// Returns a task that produces a result from a matching call to
