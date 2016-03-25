@@ -55,7 +55,7 @@ namespace Idg.AsyncTest.TaskExtensions
         }
 
         /// <summary>
-        /// Produces a task that completes when the input task completes, unless two seconds
+        /// Produces a task that completes when the input task completes, unless five seconds
         /// pass, in which case it faults with a <see cref="TimeoutException"/>.
         /// </summary>
         /// <param name="t">The task to wait for.</param>
@@ -64,6 +64,6 @@ namespace Idg.AsyncTest.TaskExtensions
         /// complete within the specified time, in which case the returned task faults with
         /// <see cref="TimeoutException"/>.
         /// </returns>
-        public static Task WithTimeout(this Task t) => t.WithTimeout(TimeSpan.FromSeconds(2));
+        public static Task WithTimeout(this Task t) => t.WithTimeout(TimeSpan.FromSeconds(5));
     }
 }
