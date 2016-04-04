@@ -46,7 +46,27 @@ namespace Idg.AsyncTest.TaskExtensions
         /// </returns>
         public static async Task WithTimeout(this Task t, TimeSpan timeout)
         {
-            await Task.WhenAny(t, Task.Delay(timeout)).ConfigureAwait(false);
+            await Task.WhenAny(t, Task.Delay(timeout));
+
+            // Attempt to work around an unhelpful characteristic of the xunit test runner,
+            // which attempts to limit the degree of concurrency for parallel test runs by
+            // creating a customs synchronization context with a limited number of threads,
+            // and running all tests through a TPL TaskScheduler bound to that context.
+            // Unfortunately, it makes no attempt to throttle the number of tests queued
+            // up - it just dumps the entire test set into the TPL's lap as fast as it can.
+            // The problem with this is that it tends to result in thread pool starvation.
+            // If all tests are synchronous that has the desired effect, but as soon as you
+            // have any tests that use 'await' and cannot (or at any rate, do not) use
+            // ConfigureAwait, continuations end up sitting behind all the tests already
+            // queued up (because unlike the standard TPL thread pool, which uses a LIFO
+            // queue to avoid this, and related problems) xunit's custom synchronization 
+            // context uses a FIFO queue. The result is typically that by the time their
+            // thread pool actually gets to the work needed to complete the test, we've
+            // already timed out here.
+            for (int i = 0; !t.IsCompleted && i < 100; ++i)
+            {
+                await Task.Yield();
+            }
             if (!t.IsCompleted)
             {
                 throw new TimeoutException();
