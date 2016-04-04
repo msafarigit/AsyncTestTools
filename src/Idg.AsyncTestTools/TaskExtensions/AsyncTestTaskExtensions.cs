@@ -46,12 +46,12 @@ namespace Idg.AsyncTest.TaskExtensions
         /// </returns>
         public static async Task WithTimeout(this Task t, TimeSpan timeout)
         {
-            await Task.WhenAny(t, Task.Delay(timeout));
+            await Task.WhenAny(t, Task.Delay(timeout)).ConfigureAwait(false);
             if (!t.IsCompleted)
             {
                 throw new TimeoutException();
             }
-            await t;
+            await t.ConfigureAwait(false);
         }
 
         /// <summary>
@@ -64,6 +64,6 @@ namespace Idg.AsyncTest.TaskExtensions
         /// complete within the specified time, in which case the returned task faults with
         /// <see cref="TimeoutException"/>.
         /// </returns>
-        public static Task WithTimeout(this Task t) => t.WithTimeout(TimeSpan.FromSeconds(5));
+        public static Task WithTimeout(this Task t) => t.WithTimeout(TimeSpan.FromSeconds(2));
     }
 }
