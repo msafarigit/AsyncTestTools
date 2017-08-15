@@ -4,6 +4,7 @@
     <TargetFrameworks>netstandard1.0;net45</TargetFrameworks>
     <Authors>Ian Griffiths</Authors>
     <Company />
+    <Title>Asynchronous Test Tools</Title>
     <Description>Utilities to simplify automated tests that involve asynchronous operations</Description>
     <Copyright>Copyright © 2015-2017 Ian Griffiths</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/idg10/AsyncTestTools/master/LICENSE</PackageLicenseUrl>
