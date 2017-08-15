@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <Authors>Ian Griffiths</Authors>
+
+    <Company />
+
+    <Product>Idg.AsyncTestTools.Tests</Product>
+
+    <Description>Tests for Idg.AsyncTestTools</Description>
+
+    <Copyright>Copyright © 2015-2017 Ian Griffiths</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Idg.AsyncTestTools\Idg.AsyncTestTools.csproj" />
+  </ItemGroup>
+
+</Project>

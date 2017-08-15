@@ -1,17 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Idg.AsyncTestTools", "Idg.AsyncTestTools\Idg.AsyncTestTools.xproj", "{B71F7635-5B16-4554-B455-57E48176CCB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idg.AsyncTestTools", "Idg.AsyncTestTools\Idg.AsyncTestTools.csproj", "{B71F7635-5B16-4554-B455-57E48176CCB2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Idg.AsyncTestTools.Tests", "Idg.AsyncTestTools.Tests\Idg.AsyncTestTools.Tests.xproj", "{4A4E986B-ADAE-4CCC-8991-C77BDE4A7AD8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{633EA6EF-CFFE-416A-AFE5-2297F3D13F8A}"
-	ProjectSection(SolutionItems) = preProject
-		Idg.AsyncTestTools\global.json = Idg.AsyncTestTools\global.json
-		Idg.AsyncTestTools.Tests\global.json = Idg.AsyncTestTools.Tests\global.json
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idg.AsyncTestTools.Tests", "Idg.AsyncTestTools.Tests\Idg.AsyncTestTools.Tests.csproj", "{4A4E986B-ADAE-4CCC-8991-C77BDE4A7AD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
