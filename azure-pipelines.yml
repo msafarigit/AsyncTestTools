@@ -17,30 +17,10 @@ variables:
 steps:
 - task: NuGetToolInstaller@0
 
-#- task: NuGetCommand@2
-#  inputs:
-#    restoreSolution: '$(solution)'
-
-#- task: DotNetCoreCLI@2
-#  inputs:
-#    command: 'restore'
-#    projects: '$(solution)'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: '$(solution)'
-
-#- task: VSBuild@1
-#  inputs:
-#    solution: '$(solution)'
-#    platform: '$(buildPlatform)'
-#    configuration: '$(buildConfiguration)'
-
-#- task: VSTest@2
-#  inputs:
-#    platform: '$(buildPlatform)'
-#    configuration: '$(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -51,7 +31,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/Idg.AsyncTestTools.csproj'
-    includesymbols: true
+#    includesymbols: true
     versioningScheme: 'off'
 
 - task: PublishBuildArtifacts@1
