@@ -1,49 +1,72 @@
-# .NET Desktop
-# Build and run tests for .NET Desktop or Windows classic desktop solutions.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+stages:
+- stage: Build
 
-trigger:
-- master
+  jobs:
+  - job: Build
+    trigger:
+    - master
 
-pool:
-  vmImage: 'windows-latest'
+    pool:
+      vmImage: 'windows-latest'
 
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+    variables:
+      solution: '**/*.sln'
+      buildPlatform: 'Any CPU'
+      buildConfiguration: 'Release'
 
-steps:
-- task: gittools.gitversion.gitversion-task.GitVersion@4
-  displayName: GitVersion
-  inputs:
-    preferBundledVersion: false
+    steps:
+    - task: gittools.gitversion.gitversion-task.GitVersion@4
+      displayName: GitVersion
+      inputs:
+        preferBundledVersion: false
 
-- task: NuGetToolInstaller@0
+    - task: NuGetToolInstaller@0
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '$(solution)'
-    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration)'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'build'
+        projects: '$(solution)'
+        arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: '$(solution)'
-    arguments: '-c $(BuildConfiguration) --no-build --no-restore /p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)"'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'test'
+        projects: '$(solution)'
+        arguments: '-c $(BuildConfiguration) --no-build --no-restore /p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)"'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/Idg.AsyncTestTools.csproj'
-    versioningScheme: 'off'
-    nobuild: true
-    buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)"'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'pack'
+        packagesToPack: '**/Idg.AsyncTestTools.csproj'
+        versioningScheme: 'off'
+        nobuild: true
+        buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)"'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+
+  - job: Release to NuGet
+    pool:
+      vmImage: 'windows-latest'
+    
+    steps:
+    - task: NuGetCommand@2
+      displayName: 'NuGet push'
+      inputs:
+        command: push
+        packagesToPush: '$(System.DefaultWorkingDirectory)/idg10.AsyncTestTools/drop/*.nupkg'
+        nuGetFeedType: external
+        publishFeedCredentials: NuGet.Idg10.AsyncTestTools
+        includeSymbols: true
+
+    - task: GitHubRelease@0
+      displayName: 'Create GitHub preview release'
+      inputs:
+        gitHubConnection: 'GitHub idg10 (AsyncTestTools)'
+        repositoryName: idg10/AsyncTestTools
+        tagSource: manual
+        tag: 'v$(Build.BuildNumber)'
+        isPreRelease: ne(variables['Build.SourceBranch'], 'refs/heads/master')
