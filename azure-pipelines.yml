@@ -3,8 +3,6 @@ stages:
 
   jobs:
   - job: Build
-    trigger:
-    - master
 
     pool:
       vmImage: 'windows-latest'
@@ -60,7 +58,7 @@ stages:
         packagesToPush: '$(System.DefaultWorkingDirectory)/idg10.AsyncTestTools/drop/*.nupkg'
         nuGetFeedType: external
         publishFeedCredentials: NuGet.Idg10.AsyncTestTools
-        includeSymbols: true
+        includeSymbols:
 
     - task: GitHubRelease@0
       displayName: 'Create GitHub preview release'
