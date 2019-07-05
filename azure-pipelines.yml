@@ -21,16 +21,21 @@ steps:
 #  inputs:
 #    restoreSolution: '$(solution)'
 
+#- task: DotNetCoreCLI@2
+#  inputs:
+#    command: 'restore'
+#    projects: '$(solution)'
+
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'restore'
+    command: 'build'
     projects: '$(solution)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+#- task: VSBuild@1
+#  inputs:
+#    solution: '$(solution)'
+#    platform: '$(buildPlatform)'
+#    configuration: '$(buildConfiguration)'
 
 #- task: VSTest@2
 #  inputs:
@@ -41,3 +46,16 @@ steps:
   inputs:
     command: 'test'
     projects: '$(solution)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/Idg.AsyncTestTools.csproj'
+    includesymbols: true
+    versioningScheme: 'off'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
