@@ -47,6 +47,7 @@ stages:
         publishLocation: 'Container'
 
   - job: ReleaseToNuGet
+    dependsOn: Build
     pool:
       vmImage: 'windows-latest'
     
