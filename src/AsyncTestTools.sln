@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{53A82589-70BD-4BE1-9AFD-9B8F4956A3D3}"
 	ProjectSection(SolutionItems) = preProject
 		..\azure-pipelines.yml = ..\azure-pipelines.yml
+		..\GitVersion.yml = ..\GitVersion.yml
 	EndProjectSection
 EndProject
 Global
