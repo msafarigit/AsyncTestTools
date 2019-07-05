@@ -132,7 +132,7 @@ namespace Idg.AsyncTest
         private readonly object _sync = new object();
         private readonly Queue<Operation> _operations = new Queue<Operation>();
         private readonly SemaphoreSlim _waiter = new SemaphoreSlim(0);
-        private List<TArg> _arguments = new List<TArg>();
+        private readonly List<TArg> _arguments = new List<TArg>();
         private bool _getsAreAheadOfResults;
 
         /// <summary>
