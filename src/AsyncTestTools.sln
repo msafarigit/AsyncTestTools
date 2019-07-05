@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idg.AsyncTestTools", "Idg.AsyncTestTools\Idg.AsyncTestTools.csproj", "{B71F7635-5B16-4554-B455-57E48176CCB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Idg.AsyncTestTools", "Idg.AsyncTestTools\Idg.AsyncTestTools.csproj", "{B71F7635-5B16-4554-B455-57E48176CCB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idg.AsyncTestTools.Tests", "Idg.AsyncTestTools.Tests\Idg.AsyncTestTools.Tests.csproj", "{4A4E986B-ADAE-4CCC-8991-C77BDE4A7AD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Idg.AsyncTestTools.Tests", "Idg.AsyncTestTools.Tests\Idg.AsyncTestTools.Tests.csproj", "{4A4E986B-ADAE-4CCC-8991-C77BDE4A7AD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{53A82589-70BD-4BE1-9AFD-9B8F4956A3D3}"
+	ProjectSection(SolutionItems) = preProject
+		..\azure-pipelines.yml = ..\azure-pipelines.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0973E4F9-7F09-47F9-8C7E-2254BACD383B}
 	EndGlobalSection
 EndGlobal
