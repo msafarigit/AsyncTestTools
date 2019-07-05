@@ -14,7 +14,6 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageReleaseNotes>Added .NET Standard support</PackageReleaseNotes>
     <Product>Asynchronous Test Tools</Product>
-    <Version>1.0.0-beta-1</Version>
 
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>

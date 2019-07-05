@@ -26,18 +26,21 @@ steps:
   inputs:
     command: 'build'
     projects: '$(solution)'
+    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '$(solution)'
+    arguments: '-c $(BuildConfiguration) --no-build --no-restore /p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)"'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
     packagesToPack: '**/Idg.AsyncTestTools.csproj'
-#    includesymbols: true
     versioningScheme: 'off'
+    nobuild: true
+    buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)"'
 
 - task: PublishBuildArtifacts@1
   inputs:
