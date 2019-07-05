@@ -6,7 +6,7 @@
     <Company />
     <Title>Asynchronous Test Tools</Title>
     <Description>Utilities to simplify automated tests that involve asynchronous operations</Description>
-    <Copyright>Copyright © 2015-2017 Ian Griffiths</Copyright>
+    <Copyright>Copyright © 2015-2019 Ian Griffiths</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/idg10/AsyncTestTools/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/idg10/AsyncTestTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/idg10/AsyncTestTools</RepositoryUrl>
